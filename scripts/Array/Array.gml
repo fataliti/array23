@@ -4,17 +4,17 @@ function Array() constructor{
 	ds =  [];
 	
 	/// @function size()
-	size = function() {
+	static size = function() {
 		return array_length(ds);	
 	}
 	
 	/// @function push(value)
-	push = function(value) {
+	static push = function(value) {
 		ds[array_length(ds)] = value;
 	};
 	
 	/// @function indexOf(value)
-	indexOf = function(value) {
+	static indexOf = function(value) {
 		for (var p = 0; p < array_length(ds); p++) {
 			if ds[p] == value {
 				return p;
@@ -24,12 +24,12 @@ function Array() constructor{
 	};
 	
 	/// @function toString()
-	toString = function() {
+	static toString = function() {
 		return string(ds);	
 	};
 	
 	/// @function contains(value)
-	contains = function(value) {
+	static contains = function(value) {
 		for (var p = 0; p < array_length(ds); p++) {
 			if ds[p] == value {
 				return true;
@@ -39,7 +39,7 @@ function Array() constructor{
 	};
 	
 	/// @function concat(Array)
-	concat = function(arr) {
+	static concat = function(arr) {
 		var newArr = new Array();
 		array_copy(newArr.ds, 0, ds, 0, size());
 		array_copy(newArr.ds, newArr.size(), arr.ds, 0, arr.size());
@@ -47,7 +47,7 @@ function Array() constructor{
 	};
 	
 	/// @function get(index)
-	get = function(index) {
+	static get = function(index) {
 		if index >= 0 && index < size() 
 			return ds[index];
 		else 
@@ -55,7 +55,7 @@ function Array() constructor{
 	};
 	
 	/// @function foreach(cb(element, index))
-	foreach = function(cb) {
+	static foreach = function(cb) {
 		for(var i = 0; i < size(); i++) {
 			if cb(ds[i], i) == true
 				break;
@@ -63,14 +63,14 @@ function Array() constructor{
 	}
 	
 	/// @function copy()
-	copy = function() {
+	static copy = function() {
 		var newArr = new Array();
 		array_copy(newArr.ds, 0, ds, 0, array_length(ds));
 		return newArr;
 	}
 	
 	/// @function filter(cb(element)) 
-	filter = function(cb){
+	static filter = function(cb){
 		var newArr = new Array();
 		for(var i = 0; i < array_length(ds); i++){
 			if cb(ds[i]) == true {
@@ -81,17 +81,17 @@ function Array() constructor{
 	}
 	
 	/// @function equals(array) 
-	equals = function(array) {
+	static equals = function(array) {
 		return array_equals(ds, array.ds);	
 	}
 	
 	/// @function resize(newSize) 
-	resize = function(newSize) {
+	static resize = function(newSize) {
 		array_resize(ds, newSize);	
 	}
 	
 	/// @function sort(ascend) 
-	sort = function(ascend) {
+	static sort = function(ascend) {
 		var _list = ds_list_create();
 		var _arr = [];
 		var s = size();
@@ -107,7 +107,7 @@ function Array() constructor{
 	}
 	
 	/// @function shift() 
-	shift = function() {
+	static shift = function() {
 		if size() == 0
 			return undefined;
 		var ret = ds[0];
@@ -120,7 +120,7 @@ function Array() constructor{
 	}
 	
 	/// @function pop() 
-	pop = function() {
+	static pop = function() {
 		if size() == 0
 			return undefined;
 		var ret = ds[size()-1];
@@ -136,7 +136,7 @@ function Array() constructor{
 	}
 	
 	/// @function reverse() 
-	reverse = function() {
+	static reverse = function() {
 		if size() < 2
 			return;
 		
@@ -150,7 +150,7 @@ function Array() constructor{
 	} 
 	
 	/// @function join(sep) 
-	join = function(sep){
+	static join = function(sep){
 		var jString = "";
 		for (var i = 0; i < size(); i++) {
 			jString += string(ds[i]);
@@ -161,7 +161,7 @@ function Array() constructor{
 	}
 	
 	/// @function remove(value) 
-	remove = function(value){
+	static remove = function(value){
 		var removed = false;
 		var index = indexOf(value);
 		if index >= 0 {
@@ -175,7 +175,7 @@ function Array() constructor{
 	}
 	
 	/// @function unshift(value) 
-	unshift = function(value) {
+	static unshift = function(value) {
 		var _ds = [];
 		_ds[0] = value;
 		array_copy(_ds,1,ds,0,size());
@@ -183,7 +183,7 @@ function Array() constructor{
 	}
 	
 	/// @function insert(position, value)
-	insert = function(position, value) {
+	static insert = function(position, value) {
 		var _arr = [];
 		array_copy(_arr, 0, ds, 0, position);
 		_arr[array_length(_arr)] = value;
@@ -192,7 +192,7 @@ function Array() constructor{
 	}
 	
 	/// @function insert(position, ?endPos)
-	slice = function(position, endPos) {
+	static slice = function(position, endPos) {
 		if endPos == undefined 
 			endPos = size();
 		else if endPos < 0
@@ -206,7 +206,7 @@ function Array() constructor{
 	}
 	
 	/// @function splice(position, len)
-	splice = function(position, len) {
+	static splice = function(position, len) {
 		var newArr = new Array();
 		var _arr = [];
 		array_copy(_arr, 0, ds, position, len);
@@ -221,7 +221,7 @@ function Array() constructor{
 	}
 	
 	/// @function lastIndexOf(value)
-	lastIndexOf = function(value) {
+	static lastIndexOf = function(value) {
 		for (var i = size()-1; i >= 0; i--) {
 			if ds[i] == value {
 				return i;
