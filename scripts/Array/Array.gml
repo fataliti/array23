@@ -17,7 +17,7 @@ function Array() constructor{
 	indexOf = function(value) {
 		for (var p = 0; p < array_length(ds); p++) {
 			if ds[p] == value {
-				return p
+				return p;
 			}
 		}
 		return -1;
@@ -141,7 +141,7 @@ function Array() constructor{
 			return;
 		
 		var _arr = [];
-		var j = 0
+		var j = 0;
 		for (var i = size()-1; i>= 0; i--) {
 			_arr[j] = ds[i];
 			j++;
@@ -149,7 +149,7 @@ function Array() constructor{
 		ds = _arr;
 	} 
 	
-	/// @function sep() 
+	/// @function join(sep) 
 	join = function(sep){
 		var jString = "";
 		for (var i = 0; i < size(); i++) {
@@ -159,5 +159,76 @@ function Array() constructor{
 		}
 		return jString;
 	}
+	
+	/// @function remove(value) 
+	remove = function(value){
+		var removed = false;
+		var index = indexOf(value);
+		if index >= 0 {
+			var _arr = [];
+			array_copy(_arr, 0, ds, 0, index);
+			array_copy(_arr, array_length(_arr), ds, index+1, size()-index);
+			ds = _arr;
+			removed = true;
+		}
+		return removed;
+	}
+	
+	/// @function unshift(value) 
+	unshift = function(value) {
+		var _ds = [];
+		_ds[0] = value;
+		array_copy(_ds,1,ds,0,size());
+		ds = _ds;
+	}
+	
+	/// @function insert(position, value)
+	insert = function(position, value) {
+		var _arr = [];
+		array_copy(_arr, 0, ds, 0, position);
+		_arr[array_length(_arr)] = value;
+		array_copy(_arr, position+1, ds, position, size()-position);
+		ds = _arr;
+	}
+	
+	/// @function insert(position, ?endPos)
+	slice = function(position, endPos) {
+		if endPos == undefined 
+			endPos = size();
+		else if endPos < 0
+			endPos = size() + endPos;
+		
+		var newArr = new Array();
+		var _arr = [];
+		array_copy(_arr, 0, ds, position, endPos - position);
+		newArr.ds = _arr;
+		return newArr;
+	}
+	
+	/// @function splice(position, len)
+	splice = function(position, len) {
+		var newArr = new Array();
+		var _arr = [];
+		array_copy(_arr, 0, ds, position, len);
+		newArr.ds = _arr;
+		
+		var _ds = [];
+		array_copy(_ds, 0, ds, 0, position);
+		array_copy(_ds,array_length(_ds), ds, position+len, size()-position+len);
+		ds = _ds;
+		
+		return newArr;
+	}
+	
+	/// @function lastIndexOf(value)
+	lastIndexOf = function(value) {
+		for (var i = size()-1; i >= 0; i--) {
+			if ds[i] == value {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	
 }
