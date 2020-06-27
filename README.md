@@ -18,7 +18,7 @@ a.get(0) // return "val_1"
 
 //Size of the array
 //size()
-a.size() // return 2
+a.size() // return 3
 
 //Return index of the first match in array
 //indexOf(value)
