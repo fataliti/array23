@@ -80,7 +80,7 @@ function Array() constructor{
 		return newArr;
 	}
 	
-	/// @function equals(array) 
+	/// @function equals(Array) 
 	static equals = function(array) {
 		return array_equals(ds, array.ds);	
 	}
@@ -191,7 +191,7 @@ function Array() constructor{
 		ds = _arr;
 	}
 	
-	/// @function insert(position, ?endPos)
+	/// @function slice(position, ?endPos)
 	static slice = function(position, endPos) {
 		if endPos == undefined 
 			endPos = size();
