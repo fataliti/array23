@@ -230,5 +230,9 @@ function Array() constructor{
 		return -1;
 	}
 	
+	/// @function clear()
+	static clear = function() {
+		ds = [];
+	}
 	
 }

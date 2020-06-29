@@ -13,7 +13,7 @@ trace(a.get(0)) // return "val_1"
 //if out of range return undefined
 
 //Size of the array
-trace(a.size()) // return 2
+trace(a.size()) // return 3
 
 //Return index of the first match in array
 trace(a.indexOf("val_2")) // return 1
