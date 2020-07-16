@@ -4,9 +4,8 @@
 a = new Array();
 
 //Add values in array
-a.push("val_1");
-a.push("val_2");
-a.push("val_3");
+a.push("val_1", "val_2", "val_3");
+trace(a.toString());
 
 //Get a value of the position
 trace(a.get(0)) // return "val_1"

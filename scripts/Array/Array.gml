@@ -1,16 +1,20 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+/// @function Array(?value,...)
 function Array() constructor{
 	ds =  [];
-	
+	for(var i = 0; i < argument_count; i++) {
+		ds[array_length(ds)] = argument[i];
+	}
+
 	/// @function size()
 	static size = function() {
 		return array_length(ds);	
 	}
 	
-	/// @function push(value)
+	/// @function push(value,...)
 	static push = function(value) {
-		ds[array_length(ds)] = value;
+		for(var i = 0; i < argument_count; i++) {
+			ds[array_length(ds)] = argument[i];
+		}
 	};
 	
 	/// @function indexOf(value)
